@@ -1,7 +1,7 @@
 {
   "name": "dsh-vibecoding",
   "description": "5-Step TDD & Multi-Agent Vibecoding Orchestrator with Git Worktrees and UI button for DeepSeek Harness (DSH)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -37,6 +37,7 @@
   "dsh": {
     "client": {
       "platform": "web",
+      "immediately": true,
       "inject": [
         "@deepseek-ai/dsh-client-runtime",
         "@deepseek-ai/dsh-client-ui-conversation"

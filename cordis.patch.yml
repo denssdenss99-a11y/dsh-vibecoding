@@ -1,2 +1,3 @@
-- id: vibecoding
-  name: "dsh-vibecoding"
+- insert:
+    - id: vibecoding
+      name: "dsh-vibecoding"
