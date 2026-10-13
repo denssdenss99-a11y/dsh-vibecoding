@@ -1,0 +1,53 @@
+{
+  "name": "dsh-vibecoding",
+  "description": "5-Step TDD & Multi-Agent Vibecoding Orchestrator with Git Worktrees and UI button for DeepSeek Harness (DSH)",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/worktree.js",
+    "lib/client.js",
+    "skills/tdd-workflow/SKILL.md",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "deepseek",
+    "vibecoding",
+    "tdd",
+    "git-worktree",
+    "multi-agent",
+    "dsh-plugin",
+    "cordis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denssdenss99-a11y/dsh-vibecoding.git"
+  },
+  "license": "MIT",
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.0",
+    "zod": "^3.0.0 || ^4.0.0"
+  }
+}
