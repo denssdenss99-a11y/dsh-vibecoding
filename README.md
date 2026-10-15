@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Version: 1.1.2](https://img.shields.io/badge/version-1.1.2-brightgreen.svg)](package.json)
+[![Version: 1.1.3](https://img.shields.io/badge/version-1.1.3-brightgreen.svg)](package.json)
 
 **dsh-vibecoding** — плагин и TDD-оркестратор для [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness), превращающий обычный хаотичный «вайбкодинг» в строгий, надежный и предсказуемый инженерный процесс с контролем качества, изоляцией веток и защитой данных.
 
@@ -82,9 +82,9 @@ npx @deepseek-ai/dsh web
 | `worktree_list` | Показывает список всех активных изолированных воркдеревьев. |
 | `worktree_merge` | Сливает выполненную ветку воркера обратно в текущий `HEAD`. |
 | `worktree_remove` | Безопасно очищает worktree после слияния (автоматически сохраняет незакоммиченный код воркера в ветку). |
-| `verify_deliverable` | Автоматический смоук-тест: проверяет синтаксис JS/HTML без опасного исполнения (`vm.Script`), внешние зависимости и запуск в Headless Chrome. |
-| `checkpoint_create` | Создает контрольную точку (git tag + git stash snapshot) перед слиянием или рефакторингом. |
-| `checkpoint_restore` | Безопасный откат к контрольной точке (предварительно сохраняет незакоммиченные файлы в `git stash`). |
+| `verify_deliverable` | Автоматический смоук-тест: проверяет синтаксис JS/HTML без опасного исполнения (`node --check`, `vm.Script`), внешние зависимости и рендеринг в изолированном Headless Chrome. |
+| `checkpoint_create` | Создает изолированный снимок дерева репозитория (GIT_INDEX_FILE + commit-tree tag) без модификации рабочей копии и без засорения `git stash`. |
+| `checkpoint_restore` | Атомарный откат к контрольной точке через `git read-tree --reset -u` (предварительно сохраняет незакоммиченные файлы в `git stash`). |
 
 ---
 
