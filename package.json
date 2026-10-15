@@ -9,6 +9,9 @@
     "./client": "./lib/client.js",
     "./package.json": "./package.json"
   },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
   "files": [
     "lib/index.js",
     "lib/worktree.js",
