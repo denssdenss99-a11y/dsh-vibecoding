@@ -78,6 +78,11 @@ test('worktree lifecycle and safe mutate guard', async (t) => {
   assert.equal(removed.success, true);
   assert.ok(removed.branchKeptNotice?.includes('unmerged commits'));
 
+  // Lossless JSON validation: no keys with undefined values
+  for (const [k, v] of Object.entries(removed)) {
+    assert.notEqual(v, undefined, `Property ${k} must not be undefined`);
+  }
+
   // Verify work was committed to branch vibe/auth-feature
   const { stdout: logOut } = await exec('git', ['log', '-1', '--pretty=%B', 'vibe/auth-feature'], { cwd: repo });
   assert.match(logOut, /wip\(worker\): auto-save before cleanup/);
