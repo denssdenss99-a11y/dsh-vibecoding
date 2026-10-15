@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Version: 1.1.1](https://img.shields.io/badge/version-1.1.1-brightgreen.svg)](package.json)
+[![Version: 1.1.2](https://img.shields.io/badge/version-1.1.2-brightgreen.svg)](package.json)
 
 **dsh-vibecoding** — плагин и TDD-оркестратор для [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness), превращающий обычный хаотичный «вайбкодинг» в строгий, надежный и предсказуемый инженерный процесс с контролем качества, изоляцией веток и защитой данных.
 
