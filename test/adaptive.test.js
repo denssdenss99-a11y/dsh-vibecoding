@@ -62,6 +62,7 @@ test('Adaptive Complexity Tiering and Escalation Protocol logic', async () => {
   const escalationResult = detectEscalation('Tier1', 'Отлично, а теперь добавь бэкенд на Node.js и сохранение моделей в базу данных');
   assert.equal(escalationResult.escalate, true);
   assert.equal(escalationResult.targetTier, 'Tier2');
+  assert.equal(escalationResult.recommendedSubtasks, 3);
 
   // Non-escalation on further Tier 1 prompts
   const stayTier1 = detectEscalation('Tier1', 'А теперь поменяй цвет феникса на золотой');

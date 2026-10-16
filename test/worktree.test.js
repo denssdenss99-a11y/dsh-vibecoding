@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync, realpathSync } from 'node:fs';
+import { mkdtempSync, rmSync, realpathSync, existsSync } from 'node:fs';
 import { writeFile, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -93,7 +93,7 @@ test('worktree lifecycle and safe mutate guard', async (t) => {
   assert.match(mainFiles, /worker_work\.txt/);
 });
 
-test('createWorktree throws clear error if not a git repository', async (t) => {
+test('createWorktree throws clear error if not a git repository when autoInit is false', async (t) => {
   const dir = createTempRepo();
   t.after(async () => {
     try {
@@ -102,7 +102,21 @@ test('createWorktree throws clear error if not a git repository', async (t) => {
   });
 
   await assert.rejects(
-    createWorktree(dir, 'test-task'),
+    createWorktree(dir, 'test-task', 'HEAD', false),
     /is not a Git repository/
   );
+});
+
+test('createWorktree with autoInit: true initializes git repo and creates worktree', async (t) => {
+  const dir = createTempRepo();
+  t.after(async () => {
+    try {
+      rmSync(dir, { recursive: true, force: true });
+    } catch {}
+  });
+
+  const created = await createWorktree(dir, 'worker-init-test', 'HEAD', true);
+  assert.equal(created.existed, false);
+  assert.match(created.branch, /vibe\/worker-init-test/);
+  assert.ok(existsSync(created.path));
 });
