@@ -5,6 +5,8 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
+import { profileComplexity, detectEscalation } from '../lib/index.js';
+
 function createTempDir() {
   return realpathSync(mkdtempSync(join(tmpdir(), 'dsh-adapt-test-')));
 }
@@ -46,25 +48,7 @@ test('Fast-Path bypass and Zero Dead Code validation logic', async (t) => {
 });
 
 test('Adaptive Complexity Tiering and Escalation Protocol logic', async () => {
-  // Classification logic helper
-  function profileComplexity(prompt) {
-    const p = prompt.toLowerCase();
-    const tier2Keywords = ['backend', 'бэкенд', 'база данных', 'database', 'postgres', 'sqlite', 'redis', 'api', 'docker', 'авторизация', 'auth', 'jwt', 'rest', 'full-stack', 'fullstack', 'микросервис'];
-    const isTier2 = tier2Keywords.some(kw => p.includes(kw));
-    return isTier2 ? 'Tier2' : 'Tier1';
-  }
-
-  // Escalation detection helper
-  function detectEscalation(currentTier, nextPrompt) {
-    if (currentTier === 'Tier1') {
-      const nextTier = profileComplexity(nextPrompt);
-      if (nextTier === 'Tier2') {
-        return { escalate: true, targetTier: 'Tier2', reason: 'User introduced multi-runtime or persistence requirements' };
-      }
-    }
-    return { escalate: false, targetTier: currentTier };
-  }
-
+  // Uses real exported functions from lib/index.js
   // Test Tier 1 detection
   assert.equal(profileComplexity('Нарисуй мне кодом анимированного феникса в стиле оригами'), 'Tier1');
   assert.equal(profileComplexity('Сделай 3D WebGL сцену с частицами и звуком'), 'Tier1');

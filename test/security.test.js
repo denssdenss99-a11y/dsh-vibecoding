@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 test('security validations for command execution in run_tdd_cycle', () => {
   const SHELL_META_REGEX = /[\r\n;&|><`$%^]/;
-  const DANGEROUS_FLAG_REGEX = /^-(e|c|r|m)$|^--(eval|require|import|loader)$|^-(e|c|r|m)=|^--(eval|require|import|loader)=|^-c.+|^-m.+/i;
+  const DANGEROUS_FLAG_REGEX = /^-(e|c|r|m)$|^--(eval|require|import|loader|experimental-loader)$|^-(e|c|r|m)=|^--(eval|require|import|loader|experimental-loader)=|^-c.+|^-m.+/i;
 
   // 1. Shell metacharacters
   assert.equal(SHELL_META_REGEX.test('npm test && rm -rf /'), true);
@@ -21,7 +21,8 @@ test('security validations for command execution in run_tdd_cycle', () => {
     '-r', '--require', '--require=lodash',
     '-m', '-m=http.server', '-mhttp.server',
     '--import', '--import=./evil.js',
-    '--loader', '--loader=ts-node/esm'
+    '--loader', '--loader=ts-node/esm',
+    '--experimental-loader', '--experimental-loader=./evil.mjs'
   ];
 
   for (const flag of dangerous) {
@@ -45,4 +46,15 @@ test('security validations for command execution in run_tdd_cycle', () => {
   for (const flag of allowed) {
     assert.equal(DANGEROUS_FLAG_REGEX.test(flag), false, `Should allow flag: ${flag}`);
   }
+});
+
+test('relative executable path detection for test runners', () => {
+  const isRelative = (cmd) => cmd.startsWith('.') || (cmd.includes('/') && !cmd.startsWith('/')) || (cmd.includes('\\') && !cmd.match(/^[a-zA-Z]:\\/));
+
+  assert.equal(isRelative('./node'), true);
+  assert.equal(isRelative('../bin/pytest'), true);
+  assert.equal(isRelative('subdir/runner'), true);
+  assert.equal(isRelative('npm'), false);
+  assert.equal(isRelative('pytest'), false);
+  assert.equal(isRelative('/usr/local/bin/node'), false);
 });

@@ -34,6 +34,11 @@ test('isAllowedLocalOrigin permits only loopback origins', () => {
   assert.equal(isAllowedLocalOrigin('http://127.0.0.1.nip.io'), false);
   assert.equal(isAllowedLocalOrigin('https://example.com:3080'), false);
   assert.equal(isAllowedLocalOrigin('not-a-valid-url'), false);
+  // Non-http(s) protocols must be rejected even with localhost host
+  assert.equal(isAllowedLocalOrigin('ftp://localhost'), false);
+  assert.equal(isAllowedLocalOrigin('file://localhost'), false);
+  assert.equal(isAllowedLocalOrigin('ws://localhost'), false);
+  assert.equal(isAllowedLocalOrigin('gopher://localhost'), false);
 });
 
 test('transliterate and sanitizeTaskName handle Russian & special characters', () => {

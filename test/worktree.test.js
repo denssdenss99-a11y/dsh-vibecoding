@@ -92,3 +92,17 @@ test('worktree lifecycle and safe mutate guard', async (t) => {
   const { stdout: mainFiles } = await exec('git', ['ls-files'], { cwd: repo });
   assert.match(mainFiles, /worker_work\.txt/);
 });
+
+test('createWorktree throws clear error if not a git repository', async (t) => {
+  const dir = createTempRepo();
+  t.after(async () => {
+    try {
+      rmSync(dir, { recursive: true, force: true });
+    } catch {}
+  });
+
+  await assert.rejects(
+    createWorktree(dir, 'test-task'),
+    /is not a Git repository/
+  );
+});
