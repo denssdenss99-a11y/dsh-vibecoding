@@ -1,6 +1,6 @@
 {
   "name": "dsh-vibecoding",
-  "description": "5-Step TDD & Multi-Agent Vibecoding Orchestrator with Git Worktrees and UI button for DeepSeek Harness (DSH)",
+  "description": "Adaptive Multi-Agent & Contract-First Orchestrator for DeepSeek Harness (DSH) with Git Worktrees, TDD Quality Gate, Token Saver, and Web UI Toggle",
   "version": "1.4.1",
   "type": "module",
   "main": "lib/index.js",
@@ -26,11 +26,15 @@
     "deepseek-harness",
     "deepseek",
     "vibecoding",
-    "tdd",
-    "git-worktree",
     "multi-agent",
-    "dsh-plugin",
-    "cordis"
+    "contract-first",
+    "git-worktree",
+    "tdd",
+    "token-saver",
+    "quality-gate",
+    "anti-slop",
+    "cordis",
+    "dsh-plugin"
   ],
   "repository": {
     "type": "git",
