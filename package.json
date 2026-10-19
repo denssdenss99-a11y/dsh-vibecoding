@@ -1,7 +1,7 @@
 {
   "name": "dsh-vibecoding",
   "description": "Autonomous Agentic Engineering Framework (Software 3.0) for DeepSeek Harness (DSH): Spec Gatekeeper, 3-Strike Deadlock Breaker, Compound Memory, Live Server Daemon, Brownfield Whitelist, and DSH Web HUD.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
