@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Version: 1.4.0](https://img.shields.io/badge/version-1.4.0-brightgreen.svg)](package.json)
+[![Version: 1.4.1](https://img.shields.io/badge/version-1.4.1-brightgreen.svg)](package.json)
 
 **dsh-vibecoding 2.1** — адаптивный бережливый инженерный оркестратор для [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness), сочетающий скорость гибкого вайбкодинга с надежностью строгой программной инженерии, динамическими уровнями сложности (Complexity Tiering) и нулевым расходом лишних токенов.
 
