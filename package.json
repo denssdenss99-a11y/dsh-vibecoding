@@ -1,7 +1,7 @@
 {
   "name": "dsh-vibecoding",
-  "description": "Vibe Manifesto Agentic Engineering OS (Software 3.0) for DeepSeek Harness (DSH): 12 Golden Rules, Native CDP Browser Smoke Verifier, Git Save Points, Matter.js Physics Invariants, and Zero-Bloat HUD.",
-  "version": "3.2.0",
+  "description": "Vibe SOP Agentic Engineering OS (Software 3.0) for DeepSeek Harness (DSH): Delivery Archetypes, Zero-Build Standalone, OS Guardrails, Native CDP Browser Smoke Verifier, Git Save Points, 2-Strike Rollback, and Zero-Bloat HUD.",
+  "version": "3.3.0",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
