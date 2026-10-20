@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { apply } from '../lib/index.js';
 
-test('Plugin Registration: All 15 tools, system prompt, commands and webserver register cleanly', (t) => {
+test('Plugin Registration: 5 sharp tools, Vibe Manifesto prompt, and HUD register cleanly', () => {
   const registeredTools = [];
   const registeredSections = [];
   const registeredCommands = [];
@@ -28,24 +28,14 @@ test('Plugin Registration: All 15 tools, system prompt, commands and webserver r
   });
 
   const expectedTools = [
-    'scope_manage',
-    'memory_manage',
-    'strike_guard',
-    'server_daemon',
-    'devops_provision',
-    'run_tdd_cycle',
-    'complete_interview',
-    'create_worker_brief',
+    'browser_smoke',
     'worktree_create',
     'worktree_merge',
-    'worktree_remove',
     'worktree_list',
-    'verify_deliverable',
-    'checkpoint_create',
-    'checkpoint_restore'
+    'worktree_remove'
   ];
 
-  assert.equal(registeredTools.length, 15, `Expected 15 tools, got: ${registeredTools.length}`);
+  assert.equal(registeredTools.length, 5, `Expected 5 tools, got: ${registeredTools.length}`);
   for (const name of expectedTools) {
     assert.ok(registeredTools.includes(name), `Expected tool "${name}" to be registered`);
   }
@@ -54,7 +44,9 @@ test('Plugin Registration: All 15 tools, system prompt, commands and webserver r
   assert.equal(registeredSections[0].name, 'vibecoding:universal-policy');
 
   const promptText = registeredSections[0].text({ session: { id: 'test-session' } });
-  assert.ok(promptText.includes('AGENTIC ENGINEERING OS 3.0'), 'Prompt must contain Agentic Engineering header');
+  assert.ok(promptText.includes('THE VIBE MANIFESTO'), 'Prompt must contain Vibe Manifesto header');
+  assert.ok(promptText.includes('browser_smoke'), 'Prompt must instruct using browser_smoke');
+  assert.ok(promptText.includes('poly-decomp'), 'Prompt must instruct poly-decomp for Matter.js');
 
   assert.ok(registeredCommands.some(c => c.name === 'vibe'), 'Slash command /vibe must be registered');
   assert.ok(registeredRoutes.some(r => r.path === '/dsh-vibecoding'), 'Route /dsh-vibecoding must be registered');
