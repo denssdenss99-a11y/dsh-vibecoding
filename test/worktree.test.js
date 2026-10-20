@@ -120,3 +120,19 @@ test('createWorktree with autoInit: true initializes git repo and creates worktr
   assert.match(created.branch, /vibe\/worker-init-test/);
   assert.ok(existsSync(created.path));
 });
+
+test('createWorktree accepts options object { baseBranch, autoInit } without TypeError', async (t) => {
+  const dir = createTempRepo();
+  t.after(async () => {
+    try {
+      rmSync(dir, { recursive: true, force: true });
+    } catch {}
+  });
+
+  // Call with object as 3rd parameter (the way lib/index.js invokes it)
+  const created = await createWorktree(dir, 'worker-opts-test', { baseBranch: 'HEAD', autoInit: true });
+  assert.equal(created.existed, false);
+  assert.match(created.branch, /vibe\/worker-opts-test/);
+  assert.ok(existsSync(created.path));
+});
+

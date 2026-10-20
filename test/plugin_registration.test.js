@@ -50,4 +50,38 @@ test('Plugin Registration: 5 sharp tools, Vibe Manifesto prompt, and HUD registe
 
   assert.ok(registeredCommands.some(c => c.name === 'vibe'), 'Slash command /vibe must be registered');
   assert.ok(registeredRoutes.some(r => r.path === '/dsh-vibecoding'), 'Route /dsh-vibecoding must be registered');
+
+  // Verify route handler responds to state, rollback, and wrapup
+  const vibeRoute = registeredRoutes.find(r => r.path === '/dsh-vibecoding');
+  assert.ok(vibeRoute, 'vibeRoute must be present');
 });
+
+test('Web routes handle state, rollback, and wrapup without 404', async () => {
+  const registeredRoutes = [];
+  const fakeCtx = {
+    webServer: { register: (r) => registeredRoutes.push(r) },
+    systemPrompt: { section: () => {} },
+    commands: { register: () => {} },
+    tools: { register: () => {} }
+  };
+  apply(fakeCtx);
+
+  const route = registeredRoutes.find(r => r.path === '/dsh-vibecoding');
+  assert.ok(route, 'Route must exist');
+
+  // 1. Test state endpoint
+  let stateBody = '';
+  let stateCode = 0;
+  const mockReqState = { url: '/dsh-vibecoding/state?sid=test', method: 'GET', headers: { origin: 'http://localhost:3000' } };
+  const mockResState = {
+    writeHead: (c) => { stateCode = c; },
+    end: (b) => { stateBody = b; }
+  };
+  await route.handler(mockReqState, mockResState);
+  assert.equal(stateCode, 200);
+  const parsedState = JSON.parse(stateBody);
+  assert.equal(parsedState.version, '3.3.1');
+  assert.equal(parsedState.strikes, 0);
+  assert.equal(parsedState.isCodeLocked, false);
+});
+

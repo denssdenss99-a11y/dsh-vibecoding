@@ -1,7 +1,7 @@
 {
   "name": "dsh-vibecoding",
   "description": "Vibe SOP Agentic Engineering OS (Software 3.0) for DeepSeek Harness (DSH): Delivery Archetypes, Zero-Build Standalone, OS Guardrails, Native CDP Browser Smoke Verifier, Git Save Points, 2-Strike Rollback, and Zero-Bloat HUD.",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -9,17 +9,15 @@
     "./smoke": "./lib/smoke.js",
     "./client": "./lib/client.js",
     "./worktree": "./lib/worktree.js",
+    "./*": "./lib/*.js",
     "./package.json": "./package.json"
   },
   "scripts": {
     "test": "node --test test/*.test.js"
   },
   "files": [
-    "lib/index.js",
-    "lib/smoke.js",
-    "lib/worktree.js",
-    "lib/client.js",
-    "skills/tdd-workflow/SKILL.md",
+    "lib",
+    "skills",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"

@@ -1,9 +1,9 @@
-# dsh-vibecoding 3.3 ⚡
+# dsh-vibecoding 3.3.1 ⚡
 ## Vibe SOP Agentic Engineering OS for DeepSeek Harness
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue.svg)](https://github.com/deepseek-ai/deepseek-harness)
-[![Version: 3.3.0](https://img.shields.io/badge/version-3.3.0-brightgreen.svg)](package.json)
+[![Version: 3.3.1](https://img.shields.io/badge/version-3.3.1-brightgreen.svg)](package.json)
 
 > *«Можно делегировать написание кода, но нельзя делегировать понимание»*  
 > — Манифест вайбкодинга (Software 3.0)
