@@ -80,7 +80,7 @@ test('Web routes handle state, rollback, and wrapup without 404', async () => {
   await route.handler(mockReqState, mockResState);
   assert.equal(stateCode, 200);
   const parsedState = JSON.parse(stateBody);
-  assert.equal(parsedState.version, '3.3.1');
+  assert.equal(parsedState.version, '3.3.2');
   assert.equal(parsedState.strikes, 0);
   assert.equal(parsedState.isCodeLocked, false);
 });
