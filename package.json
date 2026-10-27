@@ -1,7 +1,7 @@
 {
   "name": "dsh-vibecoding",
   "description": "Vibe SOP Agentic Engineering OS (Software 3.0) for DeepSeek Harness (DSH): Anti-Scope-Creep, Multi-Turn Surgical Execution, Offline Syntax Checks, Delivery Archetypes, OS Guardrails, Native CDP Browser Smoke Verifier, and Zero-Bloat HUD.",
-  "version": "3.3.3",
+  "version": "3.3.4",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
